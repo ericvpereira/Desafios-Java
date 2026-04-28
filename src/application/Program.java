@@ -30,6 +30,12 @@ public class Program {
 			case 5:
 				handleSumUntilN();
 				break;
+			case 6:
+				handlePalindrome();
+				break;
+			case 7:
+				handleVowel();
+				break;
 			case 0:
 				System.out.println("Exiting...");
 				break;
@@ -53,6 +59,8 @@ public class Program {
 		System.out.println("3 - Greater number");
 		System.out.println("4 - Count to N");
 		System.out.println("5 - Sum until N");
+		System.out.println("6 - Is palindrome");
+		System.out.println("7 - Count vowels");
 		System.out.println("0 - Exit");
 	}
 
@@ -94,6 +102,24 @@ public class Program {
 		System.out.println("Sum: " + sumUntilN(n));
 	}
 
+	public static void handlePalindrome() {
+		String word = readString("Enter the word: ");
+		if (word.trim().isEmpty()) {
+			System.out.println("Invalid input!");
+			return;
+		}
+		System.out.println(isPalindrome(word) ? "Palindrome" : "Not palindrome");
+	}
+
+	public static void handleVowel() {
+		String word = readString("Enter the word: ");
+		if (word.trim().isEmpty()) {
+			System.out.println("Invalid input!");
+			return;
+		}
+		System.out.println("Total vowels: " + countVowels(word));
+	}
+
 	// ================= BUSINESS RULES =================
 
 	public static String evenOrOdd(int n) {
@@ -123,6 +149,23 @@ public class Program {
 		return sum;
 	}
 
+	public static boolean isPalindrome(String word) {
+		String normalizedWord = word.toLowerCase().trim();
+		String wordReverse = new StringBuilder(normalizedWord).reverse().toString();
+		return (normalizedWord.equals(wordReverse));
+	}
+
+	public static int countVowels(String word) {
+		String normalizedWord = word.toLowerCase();
+		int vowels = 0;
+		for (char c : normalizedWord.toCharArray()) {
+			if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+				vowels++;
+			}
+		}
+		return vowels;
+	}
+
 	// ================= INPUT UTILS =================
 
 	public static int readInt(String message) {
@@ -145,5 +188,10 @@ public class Program {
 				System.out.println("Invalid number, try again.");
 			}
 		}
+	}
+
+	public static String readString(String message) {
+		System.out.print(message);
+		return sc.nextLine();
 	}
 }
