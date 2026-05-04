@@ -36,6 +36,12 @@ public class Program {
 			case 7:
 				handleVowel();
 				break;
+			case 8:
+				handleBigger();
+				break;
+			case 9:
+				handleAverageArray();
+				break;
 			case 0:
 				System.out.println("Exiting...");
 				break;
@@ -61,6 +67,8 @@ public class Program {
 		System.out.println("5 - Sum until N");
 		System.out.println("6 - Is palindrome");
 		System.out.println("7 - Count vowels");
+		System.out.println("8 - The biggest number");
+		System.out.println("9 - The avarage of array");
 		System.out.println("0 - Exit");
 	}
 
@@ -120,6 +128,32 @@ public class Program {
 		System.out.println("Total vowels: " + countVowels(word));
 	}
 
+	public static void handleBigger() {
+		int n = readInt("Enter a number: ");
+
+		if (n <= 0) {
+			System.out.println("Invalid size!");
+			return;
+		}
+
+		int[] numbers = new int[n];
+		for (int i = 0; i < n; i++) {
+			int number = readInt("Enter number: " + (i + 1) + ": ");
+			numbers[i] = number;
+		}
+		System.out.println("The biggest number is: " + largestNumber(numbers));
+	}
+
+	public static void handleAverageArray() {
+		int n = readInt("Enter the number: ");
+		double[] numbers = new double[n];
+		for (int i = 0; i < n; i++) {
+			double number = readDouble("Enter the numbers for avarage: ");
+			numbers[i] = number;
+		}
+		System.out.println("The avarage of Array is: " + String.format("%.2f", averageArray(numbers)));
+	}
+
 	// ================= BUSINESS RULES =================
 
 	public static String evenOrOdd(int n) {
@@ -164,6 +198,24 @@ public class Program {
 			}
 		}
 		return vowels;
+	}
+
+	public static int largestNumber(int[] numbers) {
+		int bigger = numbers[0];
+
+		for (int i = 1; i < numbers.length; i++) {
+			bigger = Math.max(bigger, numbers[i]);
+		}
+		return bigger;
+	}
+
+	public static double averageArray(double[] numbers) {
+		double sum = 0;
+
+		for (int i = 0; i < numbers.length; i++) {
+			sum += numbers[i];
+		}
+		return sum / numbers.length;
 	}
 
 	// ================= INPUT UTILS =================
