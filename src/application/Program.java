@@ -42,6 +42,9 @@ public class Program {
 			case 9:
 				handleAverageArray();
 				break;
+			case 10:
+				handleFactorial();
+				break;
 			case 0:
 				System.out.println("Exiting...");
 				break;
@@ -69,6 +72,7 @@ public class Program {
 		System.out.println("7 - Count vowels");
 		System.out.println("8 - The biggest number");
 		System.out.println("9 - The avarage of array");
+		System.out.println("10 - Factorial");
 		System.out.println("0 - Exit");
 	}
 
@@ -151,7 +155,16 @@ public class Program {
 			double number = readDouble("Enter the numbers for avarage: ");
 			numbers[i] = number;
 		}
-		System.out.println("The avarage of Array is: " + String.format("%.2f", averageArray(numbers)));
+		System.out.println("The average of Array is: " + String.format("%.2f", averageArray(numbers)));
+	}
+
+	public static void handleFactorial() {
+		int n = readInt("Enter number: ");
+		if (n < 1) {
+			System.out.println("Invalid value!");
+			return;
+		}
+		System.out.println("Factorial of " + n + " is: " + factorial(n));
 	}
 
 	// ================= BUSINESS RULES =================
@@ -211,11 +224,18 @@ public class Program {
 
 	public static double averageArray(double[] numbers) {
 		double sum = 0;
-
 		for (int i = 0; i < numbers.length; i++) {
 			sum += numbers[i];
 		}
 		return sum / numbers.length;
+	}
+
+	public static long factorial(int number) {
+		long factorial = 1;
+		for (int i = 2; i <= number; i++) {
+			factorial *= i;
+		}
+		return factorial;
 	}
 
 	// ================= INPUT UTILS =================
